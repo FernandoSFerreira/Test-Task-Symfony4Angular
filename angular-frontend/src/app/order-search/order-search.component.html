@@ -1,0 +1,31 @@
+<!-- order-search.component.html -->
+
+<div>
+    <!-- HTML structure for search -->
+    <input [(ngModel)]="searchTerm" placeholder="Search by customer or status" />
+    <button (click)="search()">Search</button>
+  </div>
+
+<div>
+    <h2>Order Search</h2>
+    <!-- Link to main route (order list) -->
+    <a routerLink="/">Go to Order List</a>
+  
+    <!-- Componente de pesquisa de pedidos -->
+    <app-order-search></app-order-search>
+  </div>
+
+
+<!-- order-search.component.html -->
+
+<div>
+    <mat-toolbar color="primary">Order Search</mat-toolbar>
+    <mat-form-field>
+      <input matInput [(ngModel)]="searchTerm" placeholder="Search">
+    </mat-form-field>
+    <button mat-raised-button (click)="search()">Search</button>
+    <mat-card *ngFor="let order of searchedOrders">
+      <!-- Card content, similar to the example above -->
+    </mat-card>
+  </div>
+  

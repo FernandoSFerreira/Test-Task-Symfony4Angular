@@ -1,0 +1,57 @@
+<!-- order-list.component.html -->
+
+<div>
+  <mat-toolbar color="primary">Orders List ({{orders.length}})</mat-toolbar>
+</div>
+
+<!-- Upload de arquivo de Orders -->
+<div>
+  <label for="fileInput">Upload Orders File:</label>
+  <input type="file" id="fileInput" (change)="onFileSelected($event)">
+  <button (click)="uploadOrders()">Upload</button>
+</div>
+
+
+<!-- Caixa de pesquisa -->
+<div>
+  <label for="searchTerm">Search by:</label>
+  <select [(ngModel)]="searchBy">
+    <option value="customer">Customer</option>
+    <option value="status">Status</option>
+  </select>
+  <input type="text" id="searchTerm" [(ngModel)]="searchTerm">
+  <button (click)="searchOrders()">Search</button>
+</div>
+
+<!-- Tabela para mostrar os pedidos -->
+<table class="table">
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>Date</th>
+      <th>Customer</th>
+      <th>Amount</th>
+      <th>Status</th>
+      <th>Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let order of orders | slice: (currentPage - 1) * itemsPerPage : (currentPage - 1) * itemsPerPage + itemsPerPage">
+      <td>{{ order.id }}</td>
+      <td>{{ order.date }}</td>
+      <td>{{ order.customer }}</td>
+      <td>{{ order.amount }}</td>
+      <td>{{ order.status }}</td>
+      <td>
+        <button (click)="cancelOrder(order.id)">Cancel</button>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+<!-- Paginação -->
+<div>
+  <button [disabled]="currentPage === 1" (click)="currentPage = currentPage - 1">Previous</button>
+  <span>{{ currentPage }} / {{ getTotalPages() }}</span>
+  <button [disabled]="currentPage === getTotalPages()" (click)="currentPage = currentPage + 1">Next</button>
+</div>

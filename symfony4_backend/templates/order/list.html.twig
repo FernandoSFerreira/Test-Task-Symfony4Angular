@@ -1,0 +1,36 @@
+{# templates/order/list.html.twig #}
+
+{% extends 'base.html.twig' %}
+
+{% block title %}Lista de Pedidos{% endblock %}
+
+{% block body %}
+    <h1>Orders List</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Data</th>
+                <th>Client</th>
+                <th>Amount</th>
+                <th>Status</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for order in orders %}
+                <tr>
+                    <td>{{ order.id }}</td>
+                    <td>{{ order.date|date('Y-m-d H:i:s') }}</td>
+                    <td>{{ order.customer }}</td>
+                    <td>{{ order.amount }}</td>
+                    <td>{{ order.status }}</td>
+                    <td>
+                        <a href="{{ path('cancel_order', {'id': order.id}) }}">Cancel</a>
+                    </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}

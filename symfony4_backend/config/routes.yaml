@@ -1,0 +1,30 @@
+
+# Route to import orders
+import_orders:
+    path: /orders/import
+    controller: 'App\Controller\OrderController::importOrders'
+    methods: ['GET']
+
+# Route to list orders
+list_orders:
+    path: /orders
+    controller: 'App\Controller\OrderController::listOrders'
+    methods: ['GET']
+
+# Route to cancel an order
+cancel_order:
+    path: /orders/{id}/cancel
+    controller: 'App\Controller\OrderController::cancelOrder'
+    methods: ['PUT']
+
+# Route to search for orders
+search_orders:
+    path: /orders/search
+    controller: 'App\Controller\OrderController::searchOrders'
+    methods: ['GET']
+
+# Route to upload orders
+upload_orders:
+    path: '/orders/upload-orders'
+    controller: 'App\Controller\OrderController::uploadOrders'
+    methods: ['POST']
